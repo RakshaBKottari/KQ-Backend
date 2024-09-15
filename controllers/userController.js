@@ -53,8 +53,8 @@ const loginUser = asyncHandler(async (req, res) => {
       if (isLoginSamePassword) {
         res.status(200).send({
           success: true,
-          data: { EmailID: email },
           message: "User logged in successfully",
+          data: { userEmail: email },
         });
       } else {
         res.status(400).send({ message: "Invalid credentials" });
