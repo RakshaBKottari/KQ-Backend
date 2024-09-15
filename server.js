@@ -21,7 +21,7 @@ connectDB()
 app.get("/", (req, res) => {
   res.status(200).send("Welcome");
 });
-app.use("/api", require("./routes/router"));
+app.use("/be/v1", require("./routes/router"));
 
 app.listen(
   port,
