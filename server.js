@@ -19,7 +19,7 @@ connectDB()
   });
 
 app.get("/", (req, res) => {
-  res.send("Welcome");
+  res.status(200).send("Welcome");
 });
 app.use("/api", require("./routes/router"));
 
