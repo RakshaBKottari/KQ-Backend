@@ -62,6 +62,8 @@ const loginUser = asyncHandler(async (req, res) => {
     } catch (error) {
       res.status(400).send({ message: "something went wrong" });
     }
+  } else {
+    res.status(400).send({ message: "user doesnt exist" });
   }
 });
 
