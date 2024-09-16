@@ -11,10 +11,45 @@ const createUser = asyncHandler(async (req, res) => {
     return;
   }
 
+  // Check password length
+  if (password.length < 6) {
+    res
+      .status(400)
+      .send({ message: "Password must be at least 6 characters long." });
+    return;
+  }
+
+  // Check for uppercase letter
+  const uppercaseRegex = /[A-Z]/;
+  if (!uppercaseRegex.test(password)) {
+    res.status(400).send({
+      message: "Password must contain at least one uppercase letter.",
+    });
+    return;
+  }
+
+  // Check for special character
+  const specialCharRegex = /[!@#$%^&*]/;
+  if (!specialCharRegex.test(password)) {
+    res.status(400).send({
+      message: "Password must contain at least one special character.",
+    });
+    return;
+  }
+
+  // Check for spaces
+  const spaceRegex = /\s/;
+  if (spaceRegex.test(password)) {
+    res.status(400).send({ message: "Password must not contain spaces." });
+    return;
+  }
+
   const userExists = await User.findOne({ email });
   if (userExists) {
     res.status(400).send({ message: "User already exists" });
     return;
+  }
+  if (password) {
   }
 
   const salt = await bcrypt.genSalt(10); // Generate salt for password hashing
