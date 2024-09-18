@@ -1,6 +1,5 @@
 const express = require("express");
 const cors = require("cors");
-const connectDB = require("./config/db");
 const dotenv = require("dotenv").config(); //check env file: port value
 const port = process.env.PORT || 5000;
 
@@ -9,19 +8,12 @@ app.use(cors()); // Enable CORS for all routes
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// connectDB();
-connectDB()
-  .then(() => {
-    console.log("Database connected successfully");
-  })
-  .catch((err) => {
-    console.log(`Database connection failed: ${err.message}`);
-  });
-
 app.get("/", (req, res) => {
   res.status(200).send("Welcome");
 });
-app.use("/be/v1", require("./routes/router"));
+
+const routes = require("./routes/router");
+app.use("/be/v1", routes);
 
 app.listen(
   port,
