@@ -43,7 +43,7 @@ passwordRoutes.post("/create/password", async (req, res) => {
 
 // Get all password entries by email
 // Get all password entries by email (payload-based)
-passwordRoutes.get("/get/passwords", async (req, res) => {
+passwordRoutes.post("/get/passwords", async (req, res) => {
   await connectDB();
   try {
     const { email } = req.body;
