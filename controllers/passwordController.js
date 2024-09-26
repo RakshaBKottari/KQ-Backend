@@ -115,7 +115,7 @@ passwordRoutes.put("/update/password", async (req, res) => {
 });
 
 // Delete password by id
-passwordRoutes.delete("/delete/password", async (req, res) => {
+passwordRoutes.post("/delete/password", async (req, res) => {
   await connectDB();
   try {
     const { id } = req.body;
