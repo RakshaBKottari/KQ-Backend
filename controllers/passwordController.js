@@ -124,6 +124,7 @@ passwordRoutes.post("/delete/password", async (req, res) => {
     }
 
     const passwordDetails = await Password.findByIdAndDelete(id);
+    console.log(passwordDetails);
     if (!passwordDetails) {
       return res.status(404).send({ message: "Password entry not found!" });
     }
